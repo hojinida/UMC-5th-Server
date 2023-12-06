@@ -1,8 +1,9 @@
 package com.example.mission7.review;
 
 import com.example.mission7.member.Member;
-import com.example.mission7.store.Store;
+import com.example.mission7.store.domain.Store;
 import jakarta.persistence.*;
+import lombok.Builder;
 
 import java.util.Date;
 
@@ -38,4 +39,15 @@ public class Review {
     private Date updatedAt;
 
     // 기타 getter와 setter 메소드 ...
+
+
+    @Builder
+    public Review(Member member, Store store, String content, float score, Date createdAt, Date updatedAt) {
+        this.member = member;
+        this.store = store;
+        this.content = content;
+        this.score = score;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
 }

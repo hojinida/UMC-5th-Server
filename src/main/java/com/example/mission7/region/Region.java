@@ -1,5 +1,6 @@
-package com.example.mission7.store;
+package com.example.mission7.region;
 
+import com.example.mission7.store.domain.Store;
 import jakarta.persistence.*;
 
 import java.util.Date;

@@ -1,13 +1,16 @@
 package com.example.mission7.mission;
 
-import com.example.mission7.store.Store;
+import com.example.mission7.store.domain.Store;
 import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "mission")
+@NoArgsConstructor
 public class Mission {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,4 +44,15 @@ public class Mission {
     private List<MemberMission> memberMissions;
 
     // 기타 getter와 setter 메소드 ...
+
+    @Builder
+    public Mission(Store store, String reward, Date deadline, String missionSpec, Date createdAt, Date updatedAt, List<MemberMission> memberMissions) {
+        this.store = store;
+        this.reward = reward;
+        this.deadline = deadline;
+        this.missionSpec = missionSpec;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.memberMissions = memberMissions;
+    }
 }

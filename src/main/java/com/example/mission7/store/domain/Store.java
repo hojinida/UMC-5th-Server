@@ -1,14 +1,18 @@
-package com.example.mission7.store;
+package com.example.mission7.store.domain;
 
 import com.example.mission7.mission.Mission;
+import com.example.mission7.region.Region;
 import com.example.mission7.review.Review;
 import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "store")
+@NoArgsConstructor
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,5 +48,26 @@ public class Store {
     @JoinColumn(name = "region_id")
     private Region region;
 
+
+    public void addReview(Review review) {
+        this.reviews.add(review);
+    }
+
+    public void addMission(Mission mission) {
+        this.missions.add(mission);
+    }
+
     // 기타 getter와 setter 메소드 ...
+
+    @Builder
+    public Store(String name, String address, float score, Date createdAt, Date updatedAt, List<Mission> missions, List<Review> reviews, Region region) {
+        this.name = name;
+        this.address = address;
+        this.score = score;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.missions = missions;
+        this.reviews = reviews;
+        this.region = region;
+    }
 }
